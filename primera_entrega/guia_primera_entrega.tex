@@ -1,0 +1,563 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{colortbl}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows, positioning, calc}
+
+% Configuración de colores institucionales
+\definecolor{usachblue}{RGB}{0,46,93}
+\definecolor{usachred}{RGB}{200,16,46}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\definecolor{warningyellow}{RGB}{255,193,7}
+\definecolor{infoblue}{RGB}{52,152,219}
+
+% Configuración de cajas
+\tcbuselibrary{skins,breakable}
+
+\newtcolorbox{requirements}[1][]{
+    colback=infoblue!10,
+    colframe=infoblue!60,
+    fonttitle=\bfseries,
+    title=Requisitos Mínimos,
+    breakable,
+    #1
+}
+
+\newtcolorbox{deliverables}[1][]{
+    colback=darkgreen!10,
+    colframe=darkgreen!60,
+    fonttitle=\bfseries,
+    title=Entregables,
+    breakable,
+    #1
+}
+
+\newtcolorbox{evaluation}[1][]{
+    colback=usachred!10,
+    colframe=usachred!60,
+    fonttitle=\bfseries,
+    title=Criterios de Evaluación,
+    breakable,
+    #1
+}
+
+\newtcolorbox{warning}[1][]{
+    colback=warningyellow!10,
+    colframe=warningyellow!80,
+    fonttitle=\bfseries,
+    title=⚠ Importante,
+    breakable,
+    #1
+}
+
+% Encabezado y pie de página
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\textcolor{usachblue}{Geoinformática - USACH}}
+\chead{\textcolor{usachblue}{Primera Evaluación de Proyecto}}
+\rhead{\textcolor{usachblue}{2025-1}}
+\lfoot{Prof. Francisco Parra O.}
+\cfoot{Página \thepage\ de \pageref*{LastPage}}
+\rfoot{\today}
+
+\title{
+    \vspace{-2cm}
+    \Large{\textbf{UNIVERSIDAD DE SANTIAGO DE CHILE}} \\
+    \large{Facultad de Ingeniería} \\
+    \large{Departamento de Ingeniería Informática} \\
+    \vspace{1cm}
+    \LARGE{\textbf{PRIMERA EVALUACIÓN DE PROYECTO}} \\
+    \Large{\textbf{Análisis Geoespacial Aplicado}} \\
+    \vspace{0.5cm}
+    \large{Presentación de Avances e Informe Técnico}
+    \vspace{1cm}
+}
+
+\author{
+    Prof. Francisco Parra O. \\
+    \texttt{francisco.parra@usach.cl}
+}
+
+\date{
+    \textbf{Fecha de publicación:} \today \\
+    \textbf{Fecha de presentaciones:} 7 de octubre de 2025 \\
+    \textbf{Fecha de entrega del informe:} 10 de octubre de 2025
+}
+
+\begin{document}
+
+\maketitle
+
+\section{Descripción General}
+
+Esta primera evaluación constituye un \textbf{hito fundamental} en el desarrollo del proyecto semestral de su grupo. Después de 4 semanas desde la selección del proyecto (2 ya transcurridas + 2 adicionales), deben demostrar avances concretos en:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Comprensión del problema:} Marco teórico y justificación clara
+    \item \textbf{Adquisición de datos:} Fuentes identificadas y datos descargados
+    \item \textbf{Análisis exploratorio:} Primeras visualizaciones y estadísticas
+    \item \textbf{Pipeline técnico:} Ambiente de desarrollo funcional
+    \item \textbf{Plan de trabajo:} Cronograma realista para el resto del semestre
+\end{itemize}
+
+\section{Objetivos de la Evaluación}
+
+\subsection{Objetivos Principales}
+\begin{enumerate}
+    \item \textbf{Verificar factibilidad:} Confirmar que el proyecto es realizable con los datos y tiempo disponibles
+    \item \textbf{Evaluar comprensión:} Asegurar que entienden el problema geoespacial a resolver
+    \item \textbf{Validar enfoque técnico:} Revisar que las herramientas y métodos sean apropiados
+    \item \textbf{Proporcionar retroalimentación:} Guiar ajustes necesarios antes de continuar
+\end{enumerate}
+
+\section{Componentes de la Evaluación}
+
+\subsection{Distribución de Ponderaciones}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|p{8cm}|}
+\hline
+\rowcolor{usachblue!20}
+\textbf{Componente} & \textbf{Peso} & \textbf{Descripción} \\
+\hline
+Informe Técnico & 40\% & Documento escrito con todos los requisitos \\
+\hline
+Presentación Oral & 25\% & Exposición de 15 minutos + 5 de preguntas \\
+\hline
+Código y Reproducibilidad & 20\% & Repositorio GitHub con código funcional \\
+\hline
+Visualizaciones & 10\% & Calidad de mapas y gráficos producidos \\
+\hline
+Trabajo en Equipo & 5\% & Evidencia de colaboración efectiva \\
+\hline
+\textbf{Total} & \textbf{100\%} & \\
+\hline
+\end{tabular}
+\caption{Ponderación de componentes de evaluación}
+\end{table}
+
+\section{Requisitos Mínimos por Componente}
+
+\subsection{A. Informe Técnico (40\%)}
+
+\begin{requirements}
+\textbf{Extensión:} 15-20 páginas (sin incluir anexos) \\
+\textbf{Formato:} LaTeX o Markdown convertido a PDF \\
+\textbf{Estructura obligatoria:}
+\end{requirements}
+
+\subsubsection{Estructura del Informe}
+
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Resumen Ejecutivo} (1 página)
+    \begin{itemize}
+        \item Problema abordado
+        \item Área de estudio
+        \item Metodología propuesta
+        \item Resultados preliminares
+    \end{itemize}
+
+    \item \textbf{Introducción} (2-3 páginas)
+    \begin{itemize}
+        \item Contexto del problema
+        \item Justificación de la relevancia
+        \item Objetivos específicos
+        \item Preguntas de investigación
+    \end{itemize}
+
+    \item \textbf{Marco Teórico} (3-4 páginas)
+    \begin{itemize}
+        \item Revisión de literatura (mínimo 10 referencias)
+        \item Conceptos geoespaciales clave
+        \item Casos de estudio similares
+        \item Estado del arte en la temática
+    \end{itemize}
+
+    \item \textbf{Área de Estudio} (2-3 páginas)
+    \begin{itemize}
+        \item Delimitación geográfica precisa
+        \item Características territoriales relevantes
+        \item Mapa de ubicación (obligatorio)
+        \item Justificación de la selección
+    \end{itemize}
+
+    \item \textbf{Datos y Metodología} (4-5 páginas)
+    \begin{itemize}
+        \item \textbf{Fuentes de datos:}
+        \begin{itemize}
+            \item Tabla con todas las fuentes
+            \item Descripción de cada dataset
+            \item Fechas de actualización
+            \item Resolución espacial/temporal
+        \end{itemize}
+        \item \textbf{Procesamiento preliminar:}
+        \begin{itemize}
+            \item Diagrama de flujo metodológico
+            \item Herramientas utilizadas
+            \item Transformaciones aplicadas
+        \end{itemize}
+    \end{itemize}
+
+    \item \textbf{Resultados Preliminares} (3-4 páginas)
+    \begin{itemize}
+        \item Análisis exploratorio de datos (EDA)
+        \item Estadísticas descriptivas espaciales
+        \item Primeras visualizaciones
+        \item Patrones identificados
+    \end{itemize}
+
+    \item \textbf{Cronograma} (1 página)
+    \begin{itemize}
+        \item Gantt chart con actividades restantes
+        \item Hitos principales
+        \item Distribución de responsabilidades
+    \end{itemize}
+
+    \item \textbf{Conclusiones Preliminares} (1 página)
+    \begin{itemize}
+        \item Factibilidad del proyecto
+        \item Desafíos identificados
+        \item Ajustes propuestos
+    \end{itemize}
+\end{enumerate}
+
+\subsection{B. Presentación Oral (25\%)}
+
+\begin{deliverables}
+\textbf{Duración:} 15 minutos de exposición + 5 minutos de preguntas \\
+\textbf{Formato:} Presencial con apoyo de slides \\
+\textbf{Participación:} Todos los integrantes del grupo deben participar en la exposición
+\end{deliverables}
+
+\subsubsection{Estructura de la Presentación}
+
+\begin{enumerate}
+    \item \textbf{Introducción} (2 min)
+    \begin{itemize}
+        \item Problema y motivación
+        \item Objetivos del proyecto
+    \end{itemize}
+
+    \item \textbf{Área de Estudio} (2 min)
+    \begin{itemize}
+        \item Mapas de localización
+        \item Características relevantes
+    \end{itemize}
+
+    \item \textbf{Datos y Métodos} (4 min)
+    \begin{itemize}
+        \item Fuentes de datos (con ejemplos visuales)
+        \item Pipeline de procesamiento
+        \item Herramientas utilizadas
+    \end{itemize}
+
+    \item \textbf{Resultados Preliminares} (5 min)
+    \begin{itemize}
+        \item Demo en vivo (opcional pero valorado)
+        \item Visualizaciones principales
+        \item Hallazgos iniciales
+    \end{itemize}
+
+    \item \textbf{Próximos Pasos} (2 min)
+    \begin{itemize}
+        \item Plan de trabajo
+        \item Desafíos esperados
+    \end{itemize}
+\end{enumerate}
+
+\subsection{C. Código y Reproducibilidad (20\%)}
+
+\begin{requirements}
+\textbf{Repositorio GitHub:} \texttt{github.com/[usuario]/geoinformatica-proyecto} \\
+\textbf{Estructura mínima requerida:}
+\end{requirements}
+
+\begin{verbatim}
+proyecto/
+├── README.md                 # Documentación principal
+├── requirements.txt          # Dependencias Python
+├── data/
+│   ├── raw/                 # Datos originales (o links de descarga)
+│   └── processed/           # Datos procesados
+├── notebooks/
+│   ├── 01_exploratory.ipynb # Análisis exploratorio
+│   ├── 02_preprocessing.ipynb
+│   └── 03_analysis.ipynb
+├── src/
+│   ├── data_download.py    # Scripts de descarga
+│   ├── preprocessing.py    # Funciones de procesamiento
+│   └── visualization.py    # Funciones de visualización
+├── outputs/
+│   ├── figures/            # Gráficos generados
+│   └── maps/              # Mapas producidos
+└── docs/
+    └── informe_v1.pdf     # Informe de primera entrega
+\end{verbatim}
+
+\subsubsection{Requisitos de Código}
+
+\begin{itemize}
+    \item \textbf{Documentación:} Cada función debe tener docstring
+    \item \textbf{Reproducibilidad:} Instrucciones claras para ejecutar
+    \item \textbf{Datos:} Si son >100MB, incluir script de descarga
+    \item \textbf{Ambiente:} Archivo \texttt{requirements.txt} o \texttt{environment.yml}
+\end{itemize}
+
+\subsection{D. Visualizaciones (10\%)}
+
+\begin{evaluation}
+Se evaluará la calidad técnica y comunicativa de las visualizaciones
+\end{evaluation}
+
+\subsubsection{Requisitos Mínimos de Visualización}
+
+\begin{itemize}
+    \item \textbf{3 mapas temáticos} como mínimo:
+    \begin{itemize}
+        \item Mapa de ubicación del área de estudio
+        \item Mapa de datos principales
+        \item Mapa de análisis o resultado preliminar
+    \end{itemize}
+    \item \textbf{5 gráficos estadísticos}:
+    \begin{itemize}
+        \item Histogramas de variables clave
+        \item Series temporales (si aplica)
+        \item Correlaciones espaciales
+        \item Diagramas de dispersión
+    \end{itemize}
+    \item \textbf{1 visualización interactiva} (Folium, Plotly, o Streamlit)
+\end{itemize}
+
+\section{Checklist de Entregables}
+
+\begin{warning}
+Todos los items de esta lista son \textbf{obligatorios}. La ausencia de cualquiera resultará en descuento de puntaje.
+\end{warning}
+
+\subsection{Checklist Completo}
+
+\begin{longtable}{|p{1cm}|p{10cm}|c|}
+\hline
+\rowcolor{usachblue!20}
+\textbf{✓} & \textbf{Item} & \textbf{Estado} \\
+\hline
+\endfirsthead
+\hline
+\rowcolor{usachblue!20}
+\textbf{✓} & \textbf{Item} & \textbf{Estado} \\
+\hline
+\endhead
+$\square$ & Informe en formato PDF (15-20 páginas) & Pendiente \\
+\hline
+$\square$ & Repositorio GitHub público y documentado & Pendiente \\
+\hline
+$\square$ & Mínimo 3 mapas temáticos con elementos cartográficos & Pendiente \\
+\hline
+$\square$ & Mínimo 5 gráficos estadísticos & Pendiente \\
+\hline
+$\square$ & 1 visualización interactiva funcional & Pendiente \\
+\hline
+$\square$ & Datos descargados y organizados & Pendiente \\
+\hline
+$\square$ & Código Python ejecutable y documentado & Pendiente \\
+\hline
+$\square$ & Análisis exploratorio completo (EDA) & Pendiente \\
+\hline
+$\square$ & Marco teórico con mínimo 10 referencias & Pendiente \\
+\hline
+$\square$ & Cronograma detallado (Gantt) & Pendiente \\
+\hline
+$\square$ & Presentación slides (PDF o PPTX) & Pendiente \\
+\hline
+$\square$ & README.md con instrucciones de reproducción & Pendiente \\
+\hline
+$\square$ & requirements.txt o environment.yml & Pendiente \\
+\hline
+$\square$ & Evidencia de trabajo colaborativo (commits de todos los integrantes) & Pendiente \\
+\hline
+$\square$ & Diagrama de flujo metodológico & Pendiente \\
+\hline
+\end{longtable}
+
+\section{Rúbrica de Evaluación Detallada}
+
+\subsection{Niveles de Desempeño}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{|l|X|X|X|X|}
+\hline
+\rowcolor{usachblue!20}
+\textbf{Criterio} & \textbf{Excelente (7.0)} & \textbf{Bueno (6.0)} & \textbf{Suficiente (5.0)} & \textbf{Insuficiente (<4.0)} \\
+\hline
+\textbf{Comprensión del Problema} &
+Demuestra comprensión profunda, identifica complejidades y propone soluciones innovadoras &
+Comprende bien el problema y propone soluciones adecuadas &
+Comprensión básica con soluciones estándar &
+Comprensión limitada o incorrecta \\
+\hline
+\textbf{Calidad de Datos} &
+Múltiples fuentes integradas, datos actualizados, metadata completa &
+Buenas fuentes, datos apropiados &
+Datos mínimos necesarios &
+Datos insuficientes o inadecuados \\
+\hline
+\textbf{Análisis Técnico} &
+Análisis sofisticado, métodos avanzados bien aplicados &
+Buen análisis con métodos apropiados &
+Análisis básico pero correcto &
+Análisis superficial o con errores \\
+\hline
+\textbf{Visualizaciones} &
+Excepcionales, claras, estéticamente superiores, interactivas &
+Buena calidad, claras y bien diseñadas &
+Correctas pero básicas &
+Pobres o con errores \\
+\hline
+\textbf{Código} &
+Limpio, bien documentado, modular, eficiente &
+Bien estructurado y funcional &
+Funciona pero poco organizado &
+Desorganizado o no funciona \\
+\hline
+\textbf{Presentación} &
+Clara, fluida, dominio del tema, responde preguntas con solidez &
+Buena presentación, responde bien &
+Presentación correcta &
+Confusa o incompleta \\
+\hline
+\end{tabularx}
+\caption{Rúbrica de evaluación por criterios}
+\end{table}
+
+\section{Ejemplos de Proyectos Exitosos}
+
+\subsection{Características de Proyectos Destacados}
+
+Para alcanzar la excelencia (nota 6.5-7.0), los proyectos anteriores han incluido:
+
+\begin{itemize}
+    \item \textbf{Integración de múltiples fuentes:} OSM + Census + Sentinel + DEM
+    \item \textbf{Análisis espacial avanzado:} Hot spots, clusters, interpolación
+    \item \textbf{Machine Learning básico:} Clasificación o predicción espacial
+    \item \textbf{Dashboard interactivo:} Streamlit con mapas Folium
+    \item \textbf{Reproducibilidad total:} Docker o ambiente virtual completo
+    \item \textbf{Impacto social:} Problema real con aplicación práctica
+\end{itemize}
+
+\section{Recursos de Apoyo}
+
+\subsection{Herramientas Recomendadas}
+
+\begin{itemize}
+    \item \textbf{Adquisición de datos:}
+    \begin{itemize}
+        \item OSMnx para OpenStreetMap
+        \item Google Earth Engine para imágenes satelitales
+        \item IDE Chile para datos oficiales
+        \item Census API para datos demográficos
+    \end{itemize}
+
+    \item \textbf{Procesamiento:}
+    \begin{itemize}
+        \item GeoPandas para vectores
+        \item Rasterio para rasters
+        \item PySAL para análisis espacial
+    \end{itemize}
+
+    \item \textbf{Visualización:}
+    \begin{itemize}
+        \item Folium para mapas web
+        \item Matplotlib/Seaborn para gráficos
+        \item Plotly para gráficos interactivos
+        \item Streamlit para dashboards
+    \end{itemize}
+\end{itemize}
+
+\subsection{Plantillas Disponibles}
+
+En el repositorio del curso encontrarán:
+\begin{itemize}
+    \item Template LaTeX para el informe
+    \item Estructura base de proyecto Python
+    \item Ejemplos de notebooks bien documentados
+    \item Scripts de descarga de datos
+\end{itemize}
+
+\section{Fechas Importantes}
+
+\begin{tcolorbox}[colback=warningyellow!20, colframe=warningyellow!80]
+\begin{itemize}
+    \item \textbf{Publicación de esta guía:} \today
+    \item \textbf{Consultas y dudas:} Durante las próximas 2 semanas en clase
+    \item \textbf{Presentaciones:} 7 de octubre de 2025
+    \item \textbf{Entrega de informe y código:} 10 de octubre de 2025
+    \item \textbf{Retroalimentación:} Una semana después de las presentaciones
+\end{itemize}
+\end{tcolorbox}
+
+\section{Criterios de Penalización}
+
+\begin{warning}
+Las siguientes situaciones resultarán en penalizaciones:
+\end{warning}
+
+\begin{itemize}
+    \item \textbf{Entrega tardía:} -1.0 punto por día de atraso
+    \item \textbf{Falta de algún integrante a la presentación:} -0.5 puntos
+    \item \textbf{Código no reproducible:} -0.5 puntos
+    \item \textbf{Sin commits de algún integrante:} -0.3 puntos
+    \item \textbf{Plagio o copia:} Nota 1.0 y revisión por comité de ética
+\end{itemize}
+
+\section{Preguntas Frecuentes}
+
+\subsection{¿Qué pasa si nuestros datos aún no están completos?}
+Deben mostrar avance con los datos disponibles y explicar claramente el plan para obtener los faltantes. Es mejor ser transparente sobre las limitaciones.
+
+\subsection{¿Podemos cambiar el enfoque del proyecto?}
+Sí, pero debe justificarse en el informe. Esta evaluación es precisamente para detectar si se necesitan ajustes.
+
+\subsection{¿Qué nivel de análisis espacial se espera?}
+Como mínimo: estadísticas descriptivas espaciales, mapas de densidad/distribución, y algún índice espacial (Moran's I, Getis-Ord, etc.).
+
+\subsection{¿El código debe estar 100\% terminado?}
+No, pero debe ser funcional para los análisis presentados y estar bien documentado. Se espera un 40-50\% de avance del proyecto total.
+
+\section{Contacto y Consultas}
+
+\begin{tcolorbox}[colback=infoblue!20, colframe=infoblue!80]
+\textbf{Horarios de consulta:}
+\begin{itemize}
+    \item Presencial: Horario a coordinar
+    \item Zoom: Previa coordinación por email
+    \item Email: francisco.parra@usach.cl
+\end{itemize}
+\end{tcolorbox}
+
+\vspace{1cm}
+
+\begin{center}
+\large{\textbf{¡Éxito en su primera evaluación!}}
+\end{center}
+
+\end{document}

@@ -1,0 +1,525 @@
+% ====================================================================
+% PLANTILLA INFORME PRIMERA ENTREGA - GEOINFORMÁTICA USACH
+% Autor: Prof. Francisco Parra O.
+% ====================================================================
+
+\documentclass[11pt,letterpaper]{article}
+
+% PAQUETES ESENCIALES
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage[backend=biber,style=apa]{biblatex}
+
+% Configuración de bibliografía
+\addbibresource{referencias.bib} % Crear este archivo para las referencias
+
+% Colores institucionales
+\definecolor{usachblue}{RGB}{0,46,93}
+\definecolor{usachred}{RGB}{200,16,46}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+% Configuración de código
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2,
+    language=Python
+}
+\lstset{style=mystyle}
+
+% Configuración de hyperref
+\hypersetup{
+    colorlinks=true,
+    linkcolor=usachblue,
+    filecolor=magenta,
+    urlcolor=usachblue,
+    citecolor=usachblue
+}
+
+% Encabezado y pie de página
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\textcolor{usachblue}{Geoinformática - Primera Entrega}}
+\rhead{\textcolor{usachblue}{USACH 2025}}
+\lfoot{\small\textit{[Nombre del grupo]}}
+\cfoot{\thepage\ de \pageref{LastPage}}
+\rfoot{\today}
+
+% ====================================================================
+% PORTADA - MODIFICAR CON SUS DATOS
+% ====================================================================
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+
+    \Large{\textbf{UNIVERSIDAD DE SANTIAGO DE CHILE}}\\
+    \large{Facultad de Ingeniería}\\
+    \large{Departamento de Ingeniería Informática}\\
+
+    \vspace{3cm}
+
+    \rule{\textwidth}{0.5mm}\\
+    \vspace{0.5cm}
+
+    {\LARGE\textbf{[TÍTULO DE SU PROYECTO]}}\\
+    \vspace{0.3cm}
+    {\Large\textit{[Subtítulo descriptivo opcional]}}\\
+
+    \vspace{0.5cm}
+    \rule{\textwidth}{0.5mm}
+
+    \vspace{2cm}
+
+    {\Large\textbf{Primera Evaluación}}\\
+    \vspace{0.5cm}
+    {\large Informe de Avance}
+
+    \vspace{3cm}
+
+    \begin{minipage}{0.8\textwidth}
+        \begin{flushleft}
+            \large
+            \textbf{Integrantes del Grupo:}\\
+            [Nombre Completo 1] - [RUT]\\
+            [Nombre Completo 2] - [RUT]\\
+            [Nombre Completo 3] - [RUT]\\
+            [Nombre Completo 4] - [RUT]\\
+            [Nombre Completo 5] - [RUT]\\
+            [Agregar más si es necesario]\\
+            \vspace{0.5cm}
+            \textbf{Profesor:}\\
+            Francisco Parra O.\\
+            \vspace{0.5cm}
+            \textbf{Ayudantes:}\\
+            [Si aplica]
+        \end{flushleft}
+    \end{minipage}
+
+    \vfill
+
+    {\large \today}
+\end{titlepage}
+
+% ====================================================================
+% RESUMEN EJECUTIVO
+% ====================================================================
+
+\newpage
+\section*{Resumen Ejecutivo}
+\addcontentsline{toc}{section}{Resumen Ejecutivo}
+
+% [Máximo 1 página]
+% Incluir: problema abordado, área de estudio, metodología principal,
+% resultados preliminares clave, y próximos pasos.
+
+Este proyecto aborda [describir el problema]... El área de estudio comprende [ubicación]...
+La metodología empleada incluye [métodos principales]... Los resultados preliminares
+muestran [hallazgos clave]... Los próximos pasos contemplan [siguientes fases]...
+
+% ====================================================================
+% ÍNDICE
+% ====================================================================
+
+\newpage
+\tableofcontents
+\newpage
+
+% ====================================================================
+% 1. INTRODUCCIÓN
+% ====================================================================
+
+\section{Introducción}
+
+\subsection{Contexto y Motivación}
+
+% Explicar el contexto del problema, por qué es importante,
+% y qué motivó la selección de este proyecto
+
+\subsection{Objetivos}
+
+\subsubsection{Objetivo General}
+
+% Un objetivo general claro y alcanzable
+
+\subsubsection{Objetivos Específicos}
+
+\begin{enumerate}
+    \item Objetivo específico 1...
+    \item Objetivo específico 2...
+    \item Objetivo específico 3...
+    \item Objetivo específico 4...
+\end{enumerate}
+
+\subsection{Preguntas de Investigación}
+
+\begin{itemize}
+    \item ¿Pregunta 1...?
+    \item ¿Pregunta 2...?
+    \item ¿Pregunta 3...?
+\end{itemize}
+
+\subsection{Alcance y Limitaciones}
+
+% Definir claramente qué incluye y qué no incluye el proyecto
+
+% ====================================================================
+% 2. MARCO TEÓRICO
+% ====================================================================
+
+\section{Marco Teórico}
+
+\subsection{Antecedentes Conceptuales}
+
+% Conceptos clave de geoinformática relevantes al proyecto
+
+\subsection{Estado del Arte}
+
+% Revisión de literatura, proyectos similares, metodologías aplicadas
+
+\subsection{Marco Metodológico de Referencia}
+
+% Métodos y técnicas que se usarán basados en la literatura
+
+% Ejemplo de cita: \parencite{autor2023}
+
+% ====================================================================
+% 3. ÁREA DE ESTUDIO
+% ====================================================================
+
+\section{Área de Estudio}
+
+\subsection{Ubicación Geográfica}
+
+% Descripción precisa con coordenadas
+
+\begin{figure}[H]
+    \centering
+    % \includegraphics[width=0.8\textwidth]{figuras/mapa_ubicacion.png}
+    \caption{Mapa de ubicación del área de estudio}
+    \label{fig:ubicacion}
+\end{figure}
+
+\subsection{Características del Territorio}
+
+\subsubsection{Características Físicas}
+
+% Topografía, clima, hidrografía, etc.
+
+\subsubsection{Características Socioeconómicas}
+
+% Población, actividades económicas, etc.
+
+\subsection{Justificación de la Selección}
+
+% Por qué esta área es apropiada para el estudio
+
+% ====================================================================
+% 4. DATOS Y METODOLOGÍA
+% ====================================================================
+
+\section{Datos y Metodología}
+
+\subsection{Fuentes de Datos}
+
+\begin{table}[H]
+\centering
+\caption{Resumen de fuentes de datos utilizadas}
+\label{tab:datos}
+\begin{tabular}{@{}llllll@{}}
+\toprule
+\textbf{Dato} & \textbf{Fuente} & \textbf{Formato} & \textbf{Resolución} & \textbf{Fecha} & \textbf{Acceso} \\
+\midrule
+OSM & OpenStreetMap & .osm/shapefile & Vectorial & 2024 & API/OSMnx \\
+DEM & NASA SRTM & .tif & 30m & 2023 & USGS \\
+Censo & INE Chile & .csv & Manzana & 2017 & Portal INE \\
+Sentinel-2 & Copernicus & .tif & 10m & 2024 & GEE \\
+% Agregar más filas según necesidad
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Preprocesamiento de Datos}
+
+\subsubsection{Limpieza y Validación}
+
+% Describir procesos de limpieza
+
+\subsubsection{Transformaciones y Proyecciones}
+
+% Sistemas de coordenadas, reproyecciones
+
+\subsection{Metodología de Análisis}
+
+\subsubsection{Diagrama de Flujo Metodológico}
+
+\begin{figure}[H]
+    \centering
+    % \includegraphics[width=\textwidth]{figuras/diagrama_flujo.png}
+    \caption{Diagrama de flujo metodológico del proyecto}
+    \label{fig:flujo}
+\end{figure}
+
+\subsubsection{Análisis Espacial}
+
+% Describir técnicas de análisis espacial a utilizar
+
+\subsubsection{Análisis Estadístico}
+
+% Métodos estadísticos y geoestadísticos
+
+% ====================================================================
+% 5. RESULTADOS PRELIMINARES
+% ====================================================================
+
+\section{Resultados Preliminares}
+
+\subsection{Análisis Exploratorio de Datos}
+
+\subsubsection{Estadísticas Descriptivas}
+
+\begin{table}[H]
+\centering
+\caption{Estadísticas descriptivas de variables principales}
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+\textbf{Variable} & \textbf{Media} & \textbf{Mediana} & \textbf{Desv.Est} & \textbf{Min} & \textbf{Max} \\
+\midrule
+Variable 1 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 \\
+Variable 2 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Distribuciones Espaciales}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        % \includegraphics[width=\textwidth]{figuras/mapa1.png}
+        \caption{Distribución de variable 1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        % \includegraphics[width=\textwidth]{figuras/mapa2.png}
+        \caption{Distribución de variable 2}
+    \end{subfigure}
+    \caption{Mapas de distribución espacial}
+    \label{fig:distribucion}
+\end{figure}
+
+\subsection{Primeros Análisis}
+
+\subsubsection{Autocorrelación Espacial}
+
+% Índice de Moran, LISA, etc.
+
+\subsubsection{Identificación de Patrones}
+
+% Hot spots, clusters, tendencias
+
+\subsection{Visualizaciones Interactivas}
+
+% Descripción y link a visualizaciones web si existen
+
+% ====================================================================
+% 6. IMPLEMENTACIÓN TÉCNICA
+% ====================================================================
+
+\section{Implementación Técnica}
+
+\subsection{Arquitectura del Sistema}
+
+% Describir la estructura del código y sistema
+
+\subsection{Herramientas y Librerías}
+
+\begin{itemize}
+    \item \textbf{Lenguaje:} Python 3.10+
+    \item \textbf{Geoespacial:} GeoPandas, Shapely, Rasterio, OSMnx
+    \item \textbf{Análisis:} NumPy, Pandas, Scikit-learn, PySAL
+    \item \textbf{Visualización:} Matplotlib, Folium, Plotly
+    \item \textbf{Base de datos:} PostGIS (si aplica)
+\end{itemize}
+
+\subsection{Código Ejemplo}
+
+\begin{lstlisting}[language=Python, caption=Ejemplo de código para análisis espacial]
+import geopandas as gpd
+import matplotlib.pyplot as plt
+from pysal.explore import esda
+
+# Cargar datos
+gdf = gpd.read_file('data/area_estudio.shp')
+
+# Calcular autocorrelación espacial
+moran = esda.Moran(gdf['variable'], weights)
+print(f"Moran's I: {moran.I:.4f}")
+print(f"P-value: {moran.p_norm:.4f}")
+\end{lstlisting}
+
+\subsection{Reproducibilidad}
+
+% Link al repositorio GitHub
+El código completo está disponible en: \url{https://github.com/usuario/proyecto}
+
+% ====================================================================
+% 7. DISCUSIÓN
+% ====================================================================
+
+\section{Discusión}
+
+\subsection{Interpretación de Resultados Preliminares}
+
+% Qué significan los resultados obtenidos hasta ahora
+
+\subsection{Desafíos Encontrados}
+
+\begin{enumerate}
+    \item \textbf{Desafío 1:} Descripción y cómo se abordó/abordará
+    \item \textbf{Desafío 2:} Descripción y cómo se abordó/abordará
+    \item \textbf{Desafío 3:} Descripción y cómo se abordó/abordará
+\end{enumerate}
+
+\subsection{Ajustes al Plan Original}
+
+% Si hubo cambios respecto a la propuesta inicial
+
+% ====================================================================
+% 8. CRONOGRAMA
+% ====================================================================
+
+\section{Cronograma de Actividades}
+
+\subsection{Actividades Completadas}
+
+\begin{table}[H]
+\centering
+\caption{Actividades completadas hasta la fecha}
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Actividad} & \textbf{Responsable} & \textbf{Inicio} & \textbf{Fin} \\
+\midrule
+Selección del proyecto & Todo el grupo & Semana 1 & Semana 1 \\
+Revisión bibliográfica & [Nombre] & Semana 2 & Semana 3 \\
+Descarga de datos & [Nombre] & Semana 3 & Semana 4 \\
+Análisis exploratorio & Todo el grupo & Semana 4 & Semana 4 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Actividades Pendientes}
+
+\begin{table}[H]
+\centering
+\caption{Cronograma de actividades restantes}
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Actividad} & \textbf{Responsable} & \textbf{Inicio} & \textbf{Duración} \\
+\midrule
+Análisis espacial avanzado & [Nombre] & Semana 5 & 2 semanas \\
+Modelamiento & [Nombre] & Semana 7 & 2 semanas \\
+Desarrollo dashboard & Todo el grupo & Semana 9 & 2 semanas \\
+Documentación final & Todo el grupo & Semana 11 & 1 semana \\
+Preparación presentación final & Todo el grupo & Semana 12 & 1 semana \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% También incluir diagrama de Gantt si es posible
+
+% ====================================================================
+% 9. CONCLUSIONES PRELIMINARES
+% ====================================================================
+
+\section{Conclusiones Preliminares}
+
+\subsection{Logros Alcanzados}
+
+\begin{itemize}
+    \item Logro 1...
+    \item Logro 2...
+    \item Logro 3...
+\end{itemize}
+
+\subsection{Factibilidad del Proyecto}
+
+% Evaluación de si el proyecto es realizable en el tiempo restante
+
+\subsection{Próximos Pasos Críticos}
+
+\begin{enumerate}
+    \item Paso crítico 1...
+    \item Paso crítico 2...
+    \item Paso crítico 3...
+\end{enumerate}
+
+% ====================================================================
+% REFERENCIAS
+% ====================================================================
+
+\newpage
+\printbibliography[heading=bibintoc,title={Referencias}]
+
+% ====================================================================
+% ANEXOS
+% ====================================================================
+
+\newpage
+\appendix
+\section{Anexos}
+
+\subsection{Anexo A: Código Adicional}
+
+% Código extenso que no cabe en el cuerpo principal
+
+\subsection{Anexo B: Tablas Complementarias}
+
+% Tablas de datos adicionales
+
+\subsection{Anexo C: Mapas Adicionales}
+
+% Más visualizaciones si es necesario
+
+\subsection{Anexo D: Enlaces y Recursos}
+
+\begin{itemize}
+    \item \textbf{Repositorio GitHub:} \url{https://github.com/usuario/proyecto}
+    \item \textbf{Dashboard interactivo:} \url{http://link-al-dashboard}
+    \item \textbf{Datos originales:} \url{http://link-a-datos}
+\end{itemize}
+
+\end{document}
